@@ -8,7 +8,7 @@ public class HResult {
 }
 
 public class DllMain {
-    private static ClassFactory Instance;
+    private static ClassFactory? Instance;
 
     [UnmanagedCallersOnly(EntryPoint = "DllGetClassObject")]
     public static unsafe int DllGetClassObject(Guid* rclsid, Guid* riid, IntPtr* ppv) {

@@ -71,16 +71,16 @@ public unsafe class ClassFactory {
         public static int QueryInterface(IntPtr* self, Guid* guid, IntPtr* ptr) {
             var handleAddress = *(self + 1);
             var handle = GCHandle.FromIntPtr(handleAddress);
-            var instance = (ClassFactory)handle.Target;
+            var instance = (ClassFactory)handle.Target!;
 
-            return instance.QueryInterface(guid, ptr);
+            return instance!.QueryInterface(guid, ptr);
         }
 
         [UnmanagedCallersOnly] // this attribute can only be applied to static methods
         public static int AddRef(IntPtr* self) {
             var handleAddress = *(self + 1);
             var handle = GCHandle.FromIntPtr(handleAddress);
-            var instance = (ClassFactory)handle.Target;
+            var instance = (ClassFactory)handle.Target!;
 
             return instance.AddRef();
         }
@@ -89,7 +89,7 @@ public unsafe class ClassFactory {
         public static int Release(IntPtr* self) {
             var handleAddress = *(self + 1);
             var handle = GCHandle.FromIntPtr(handleAddress);
-            var instance = (ClassFactory)handle.Target;
+            var instance = (ClassFactory)handle.Target!;
 
             return instance.Release();
         }
@@ -98,7 +98,7 @@ public unsafe class ClassFactory {
         public static unsafe int CreateInstance(IntPtr* self, IntPtr outer, Guid* guid, IntPtr* instance) {
             var handleAddress = *(self + 1);
             var handle = GCHandle.FromIntPtr(handleAddress);
-            var _instance = (ClassFactory)handle.Target;;
+            var _instance = (ClassFactory)handle.Target!;
 
             return _instance.CreateInstance(outer, guid, instance);
         }
@@ -107,7 +107,7 @@ public unsafe class ClassFactory {
         public static int LockServer(IntPtr* self, bool @lock) {
             var handleAddress = *(self + 1);
             var handle = GCHandle.FromIntPtr(handleAddress);
-            var instance = (ClassFactory)handle.Target;
+            var instance = (ClassFactory)handle.Target!;
 
             return instance.LockServer(@lock);
         }
